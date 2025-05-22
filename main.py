@@ -37,4 +37,21 @@ for invoice in invoice_list:
         pdf.cell(w=30, h=8, txt=str(row["price_per_unit"]), border=1)
         pdf.cell(w=30, h=8, txt=str(row["total_price"]), border=1, ln=1)
 
+    sum = df["total_price"].sum()
+    pdf.cell(w=30, h=8, border=1)
+    pdf.cell(w=70, h=8, border=1)
+    pdf.cell(w=40, h=8, border=1)
+    pdf.cell(w=30, h=8, border=1)
+    pdf.cell(w=30, h=8, txt=str(sum), border=1, ln=1)
+
+    pdf.set_font(family="Times", size=10, style="B")
+    pdf.cell(w=0, ln=1)
+    pdf.cell(w=30, h=8, txt=f"The total price is {sum}", ln=1)
+
+
+    # Add company name and logo
+    pdf.set_font(family="Times", size=14, style="B")
+    pdf.cell(w=25, h=8, txt="PythonOrg")
+    pdf.image("images/download.jpeg", w=10, h=10, link="https://google.com")
+
     pdf.output("./PDFs/PDF_" + filename + ".pdf")
